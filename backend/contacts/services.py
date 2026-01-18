@@ -1,12 +1,11 @@
 import requests
 from django.core.cache import cache
+from django.utils.text import slugify
 
 class WeatherService:
     @staticmethod
     def get_weather(city):
-        
-        # cache_key = f"weather_{city.lower().strip().replace(' ', '_')}"
-        cache_key = f"weather_{city}"
+        cache_key = f"weather_{slugify(city)}"
         cached_data = cache.get(cache_key)
         if cached_data: return cached_data
 
@@ -16,7 +15,6 @@ class WeatherService:
             
             geo_res = requests.get(geo_url, headers=headers, timeout=5)
             geo_data = geo_res.json()
-            if not geo_data: return None
 
             lat, lon = geo_data[0]['lat'], geo_data[0]['lon']
 

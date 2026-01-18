@@ -12,8 +12,8 @@ class ContactSerializer(serializers.ModelSerializer):
                   'created_at', 'weather']
         read_only_fields = ['id','created_at', 'weather']
 
-        def get_weather(self, obj):
-            return WeatherService.get_weather(obj.town) 
+    def get_weather(self, obj):
+        return WeatherService.get_weather(obj.town)
 
 class CsvImportSerializer(serializers.Serializer):
     first_name = serializers.CharField(max_length=64)
