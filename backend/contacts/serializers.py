@@ -1,13 +1,19 @@
 from rest_framework import serializers
 from .models import Contact
+from .services import WeatherService
 from phonenumber_field.serializerfields import PhoneNumberField
 
 class ContactSerializer(serializers.ModelSerializer):
+    weather = serializers.SerializerMethodField()
+
     class Meta:
         model = Contact
         fields = ['id', 'first_name', 'last_name', 'phone_number', 'email', 'town', 'status',
-                  'created_at']
-        read_only_fields = ['id','created_at']
+                  'created_at', 'weather']
+        read_only_fields = ['id','created_at', 'weather']
+
+        def get_weather(self, obj):
+            return WeatherService.get_weather(obj.town) 
 
 class CsvImportSerializer(serializers.Serializer):
     first_name = serializers.CharField(max_length=64)
