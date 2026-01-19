@@ -1,10 +1,13 @@
 from rest_framework import serializers
-from .models import Contact
+from .models import Contact, ContactStatusChoices
 from .services import WeatherService
 from phonenumber_field.serializerfields import PhoneNumberField
 
 class ContactSerializer(serializers.ModelSerializer):
     weather = serializers.SerializerMethodField()
+    status = serializers.PrimaryKeyRelatedField(
+        queryset=ContactStatusChoices.objects.all(),
+        required=False)
 
     class Meta:
         model = Contact
