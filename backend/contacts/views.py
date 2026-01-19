@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.db import transaction
 from rest_framework import viewsets, filters, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -53,7 +51,7 @@ class ContactViewSet(viewsets.ModelViewSet):
             
             for index, row in enumerate(reader, start=1):
                 serializer = CsvImportSerializer(data=row)
-                
+
                 if serializer.is_valid():
                     instance = Contact(**serializer.validated_data)
                     instance.status_id = new_status_obj.id
@@ -72,7 +70,6 @@ class ContactViewSet(viewsets.ModelViewSet):
                 )
 
             return Response({
-                "status": "ok",
                 "errors": errors
             })
         
