@@ -1,5 +1,11 @@
+import ContactCard from "../components/ContactCard.jsx";
+
 const Home = () => {
-  return <div>Strona główna</div>;
+  return (
+    <div>
+        <ContactCard/>
+    </div>
+    );
 };
 
 export default Home;
