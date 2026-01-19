@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/navbar.css';
 import AddContactModal from './Modal/AddContactModal.jsx';
+import ImportContactsModal from "./Modal/ImportContactsModal.jsx";
 
 const MODALS = {
   ADD_CONTACT: 'addContact',
@@ -55,6 +56,12 @@ function Navbar() {
 
       <AddContactModal
         isOpen={activeModal === MODALS.ADD_CONTACT}
+        onClose={closeModal}
+        onSuccess={handleRefresh}
+      />
+
+      <ImportContactsModal
+        isOpen={activeModal === MODALS.IMPORT_CSV}
         onClose={closeModal}
         onSuccess={handleRefresh}
       />
