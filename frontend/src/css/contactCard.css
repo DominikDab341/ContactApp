@@ -69,3 +69,56 @@
   border-radius: 20px;
   font-weight: 500;
 }
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #f8d7da;
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #f5c6cb;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.loading-container p {
+  color: #007bff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
