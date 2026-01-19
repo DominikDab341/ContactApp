@@ -10,10 +10,11 @@ const ContactCard = () => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [ordering, setOrdering] = useState('last_name');
   const PAGE_SIZE = 4;
 
-  const fetchContacts = (page = 1) => {
-    api.get(`contacts/?page=${page}`)
+  const fetchContacts = (page = 1, sort = 'last_name') => {
+    api.get(`contacts/?page=${page}&ordering=${sort}`)
       .then(response => {
         setContacts(response.data.results);
         setTotalPages(Math.ceil(response.data.count / PAGE_SIZE));
@@ -26,14 +27,14 @@ const ContactCard = () => {
   };
 
   useEffect(() => {
-    fetchContacts(currentPage);
-  }, [currentPage]);
+    fetchContacts(currentPage, ordering);
+  }, [currentPage, ordering]);
 
   const handleDelete = async (id) => {
     if (window.confirm("Czy na pewno chcesz usunąć ten kontakt?")) {
       try {
         await api.delete(`contacts/${id}/`);
-        fetchContacts(currentPage);
+        fetchContacts(currentPage, ordering);
       } catch (error) {
         console.error("Error while deleting contact ", error);
         alert("Nie udało się usunąć kontaktu.");
@@ -56,6 +57,23 @@ const ContactCard = () => {
 
   return (
       <div className="contacts-grid">
+        <div className="sorting-controls">
+          <label htmlFor="sort-select">Sortuj według: </label>
+          <select
+            id="sort-select"
+            value={ordering}
+            onChange={(e) => {
+              setOrdering(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="last_name">Nazwisko (A-Z)</option>
+            <option value="-last_name">Nazwisko (Z-A)</option>
+            <option value="created_at">Data powstania (rosnąco)</option>
+            <option value="-created_at">Data powstania (malejąco)</option>
+          </select>
+        </div>
+
         {contacts.map((item) => (
             <div key={item.id} className="contact-card">
               <div className="info">
@@ -116,7 +134,7 @@ const ContactCard = () => {
         <EditContactModal
             isOpen={isEditModalOpen}
             onClose={() => setIsEditModalOpen(false)}
-            onSuccess={fetchContacts}
+            onSuccess={() => fetchContacts(currentPage, ordering)}
             contact={selectedContact}
         />
       </div>

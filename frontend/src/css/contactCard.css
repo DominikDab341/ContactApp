@@ -8,6 +8,46 @@
   margin: 0 auto;
 }
 
+.sorting-controls {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f0f8ff;
+}
+
+.sorting-controls label {
+  font-weight: 600;
+  color: #555555;
+  font-size: 0.95rem;
+}
+
+#sort-select {
+  padding: 8px 16px;
+  border: 1px solid #cce5ff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.05);
+}
+
+#sort-select:hover {
+  border-color: #007bff;
+}
+
+#sort-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+
 .contact-card {
   background-color: #ffffff;
   border: 1px solid #cce5ff;
@@ -133,7 +173,6 @@
   padding: 10px;
 }
 
-
 .page-info {
   font-size: 1rem;
   color: #333;
@@ -149,7 +188,6 @@
 .pagination-btn:hover:not(:disabled) {
   background-color: #0056b3;
 }
-
 
 .pagination-btn:disabled {
   background-color: #e9ecef;
