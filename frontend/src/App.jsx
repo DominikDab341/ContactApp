@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-
+import Layout from './components/Layout.jsx';
 
 
 function App() {
@@ -14,7 +14,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* Protected urls */}
           <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<Home />} />
+              <Route element={<Layout/>}>
+                  <Route path="/" element={<Home />} />
+              </Route>
           </Route>
         </Routes>
       </main>
