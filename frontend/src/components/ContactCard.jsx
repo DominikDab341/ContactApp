@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../css/contactCard.css';
 import api from '../api/api';
 import EditContactModal from './Modal/EditContactModal';
+import Pagination from './Pagination.jsx';
 
 const ContactCard = () => {
   const [contacts, setContacts] = useState([]);
@@ -85,51 +86,21 @@ const ContactCard = () => {
               </div>
 
               <div className="weather-info">
-                <div className="temp">
-                  {item.weather.temp}
-                </div>
-                <div className="wind">
-                  {item.weather.wind} km/h
-                </div>
+                <div className="temp">{item.weather.temp}</div>
+                <div className="wind">{item.weather.wind} km/h</div>
               </div>
               <div className="card-actions">
-                <button
-                    onClick={() => handleEditClick(item)}
-                    className="btn edit-btn"
-                >
-                  Edytuj
-                </button>
-                <button
-                    onClick={() => handleDelete(item.id)}
-                    className="btn delete-btn"
-                >
-                  Usuń
-                </button>
+                <button onClick={() => handleEditClick(item)} className="btn edit-btn">Edytuj</button>
+                <button onClick={() => handleDelete(item.id)} className="btn delete-btn">Usuń</button>
               </div>
             </div>
         ))}
 
-        <div className="pagination-bar">
-          <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(prev => prev - 1)}
-              className="btn pagination-btn"
-          >
-            Poprzednia
-          </button>
-
-          <span className="page-info">
-          Strona <strong>{currentPage}</strong> z {totalPages || 1}
-        </span>
-
-          <button
-              disabled={currentPage === totalPages || totalPages === 0}
-              onClick={() => setCurrentPage(prev => prev + 1)}
-              className="btn pagination-btn"
-          >
-            Następna
-          </button>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
 
         <EditContactModal
             isOpen={isEditModalOpen}
