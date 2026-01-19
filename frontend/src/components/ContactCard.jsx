@@ -27,12 +27,13 @@ const ContactCard = () => {
         <div key={item.id} className="contact-card">
           <div className="info">
             <h3>{item.first_name} {item.last_name}</h3>
-            <p> {item.email}</p>
-            <p> {item.phone_number}</p>
+            <p>{item.email}</p>
+            <p>{item.phone_number}</p>
             <p>{item.town}</p>
+            <p>Status: {item.status}</p>
           </div>
 
-            <div className="weather-info">
+          <div className="weather-info">
               <div className="temp">
                  {item.weather.temp}
               </div>

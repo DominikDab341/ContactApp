@@ -5,7 +5,8 @@ from phonenumber_field.serializerfields import PhoneNumberField
 
 class ContactSerializer(serializers.ModelSerializer):
     weather = serializers.SerializerMethodField()
-    status = serializers.PrimaryKeyRelatedField(
+    status = serializers.SlugRelatedField(
+        slug_field='status',
         queryset=ContactStatusChoices.objects.all(),
         required=False)
 
