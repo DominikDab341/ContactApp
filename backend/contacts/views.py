@@ -3,10 +3,18 @@ from django.db import transaction
 from rest_framework import viewsets, filters, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.views import APIView
 from .models import Contact, ContactStatusChoices
-from .serializers import ContactSerializer, CsvImportSerializer
+from .serializers import ContactSerializer, CsvImportSerializer, ContactStatusChoicesSerializer
 import csv
 import io
+
+class ContactStatusChoicesAPIView(APIView):
+    def get(self, request):
+        statuses = ContactStatusChoices.objects.all()
+        serializer = ContactStatusChoicesSerializer(statuses, many=True)
+        return Response(serializer.data)
+
 
 class ContactViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]

@@ -3,6 +3,12 @@ from .models import Contact, ContactStatusChoices
 from .services import WeatherService
 from phonenumber_field.serializerfields import PhoneNumberField
 
+
+class ContactStatusChoicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactStatusChoices
+        fields = ['id', 'status']
+
 class ContactSerializer(serializers.ModelSerializer):
     weather = serializers.SerializerMethodField()
     status = serializers.SlugRelatedField(
