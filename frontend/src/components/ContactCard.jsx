@@ -56,6 +56,14 @@ const ContactCard = () => {
     );
   }
 
+  if (contacts.length === 0) {
+    return (
+      <div className="no-contacts-container">
+        <p>Dodaj swój pierwszy kontakt</p>
+      </div>
+    );
+  }
+
   return (
       <div className="contacts-grid">
         <div className="sorting-controls">

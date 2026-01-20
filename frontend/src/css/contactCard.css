@@ -163,36 +163,9 @@
   letter-spacing: 1px;
 }
 
-.pagination-bar {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-top: 30px;
-  padding: 10px;
-}
-
-.page-info {
-  font-size: 1rem;
-  color: #333;
-}
-
-.pagination-btn {
-  background-color: #007bff;
-  color: white;
-  min-width: 120px;
-  padding: 10px 20px;
-}
-
-.pagination-btn:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-.pagination-btn:disabled {
-  background-color: #e9ecef;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
-  cursor: not-allowed;
-  transform: none;
+.no-contacts-container {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.5rem;
+  color: #666;
 }
