@@ -18,4 +18,19 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const isUnauthorized = error.response && error.response.status === 401;
+    const isAlreadyOnLoginPage = window.location.pathname === '/login';
+
+    if (isUnauthorized && !isAlreadyOnLoginPage) {
+      localStorage.removeItem('accessToken');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 export default api;

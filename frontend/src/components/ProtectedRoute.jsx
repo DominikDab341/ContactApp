@@ -4,8 +4,8 @@ function ProtectedRoute() {
   const token = localStorage.getItem('accessToken');
 
   if (!token) {
-    alert('You are not logged in!');
-    return <Navigate to="/login" replace />;
+    alert('Nie jesteś zalogowany');
+    return <Navigate to="/login" />;
   }
   return <Outlet />;
 }
