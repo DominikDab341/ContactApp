@@ -64,10 +64,7 @@ Aplikacja typu CRM do zarządzania kontaktami, zintegrowana z danymi pogodowymi 
    python manage.py createsuperuser
    ```
 
-6. **Dodaj do bazy status "Nowy"**
-    - Zrób to za pomocą panelu admina
-
-7. **Uruchom serwer deweloperski**
+6. **Uruchom serwer deweloperski**
 
    ```bash
    python manage.py runserver
