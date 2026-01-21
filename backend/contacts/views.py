@@ -25,7 +25,7 @@ class ContactViewSet(viewsets.ModelViewSet):
         return Contact.objects.filter(owner=self.request.user)
     
     def perform_create(self, serializer):
-        new_status_obj=ContactStatusChoices.objects.filter(status='Nowy').first()
+        new_status_obj, created = ContactStatusChoices.objects.get_or_create(status='Nowy')
         serializer.save(status=new_status_obj,owner=self.request.user)
 
     @action(detail=False, methods=['POST'], url_path='upload-contacts')
@@ -42,7 +42,8 @@ class ContactViewSet(viewsets.ModelViewSet):
             new_contacts = []
             errors = []
 
-            new_status_obj = ContactStatusChoices.objects.filter(status='Nowy').first()
+            new_status_obj, created = ContactStatusChoices.objects.get_or_create(status='Nowy')
+
             if not new_status_obj:
                 return Response(
                     {"detail": "'Nowy' status not found in database."}, 
